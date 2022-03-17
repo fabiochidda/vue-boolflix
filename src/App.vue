@@ -2,13 +2,20 @@
   <div id="app">
 
     <div class="search-bar">
-      <input type="text" v-model="search">
+      <input type="text" v-model="search" @keyup.enter="searchFunction">
     </div>
 
     <ul class="movie-container">
       <li class="movie" v-for="el in movies" :key="el.id">
         {{el.title}}
         {{el.original_title}}
+        {{el.original_language}}
+        {{el.vote_average}}
+      </li>
+
+      <li class="tv-shows" v-for="el in tvShows" :key="el.id">
+        {{el.name}}
+        {{el.original_name}}
         {{el.original_language}}
         {{el.vote_average}}
       </li>
@@ -30,34 +37,37 @@ export default {
       tvShows: []
     }
   },
-  created() {
-    axios.get(`${this.baseURL}/search/movie`, {
-      params: {
-        api_key: 'df1607d64d3add4c3ecca5022fee5cce',
-        query: this.search,
-        language: 'it-IT'
-      }
-    })
-    .then( res => {
-      this.movies = res.data.results
-    })
-    .catch( error => {
-      console.log(error.response)
-    })
+  methods: {
+    searchFunction: function() {
 
-    axios.get(`${this.baseURL}/search/tv`, {
-      params: {
-        api_key: 'df1607d64d3add4c3ecca5022fee5cce',
-        query: this.search,
-        language: "it-IT"
-      }
-    })
-    .then( res => {
-      this.tvShows = res.data.results
-    })
-    .catch( error => {
-      console.log(error.response)
-    })
+      axios.get(`${this.baseURL}/search/movie`, {
+        params: {
+          api_key: 'df1607d64d3add4c3ecca5022fee5cce',
+          query: this.search,
+          language: "it-IT"
+        }
+      })
+      .then( res => {
+        this.movies = res.data.results
+      })
+      .catch( error => {
+        console.log(error.response)
+      })
+
+      axios.get(`${this.baseURL}/search/tv`, {
+        params: {
+          api_key: 'df1607d64d3add4c3ecca5022fee5cce',
+          query: this.search,
+          language: "it-IT"
+        }
+      })
+      .then( res => {
+        this.tvShows = res.data.results
+      })
+      .catch( error => {
+        console.log(error.response)
+      })
+    }
   }
 }
 </script>
