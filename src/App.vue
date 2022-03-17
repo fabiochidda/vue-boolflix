@@ -5,11 +5,14 @@
       <input type="text" v-model="search">
     </div>
 
-    <div class="movie-container">
-      <div class="movie" v-for="el in movies" :key="el.id">
+    <ul class="movie-container">
+      <li class="movie" v-for="el in movies" :key="el.id">
         {{el.title}}
-      </div>
-    </div>
+        {{el.original_title}}
+        {{el.original_language}}
+        {{el.vote_average}}
+      </li>
+    </ul>
 
   </div>
 </template>
@@ -22,13 +25,35 @@ export default {
   data() {
     return {
       search: 'men in black',
-      movies: []
+      baseURL: 'https://api.themoviedb.org/3',
+      movies: [],
+      tvShows: []
     }
   },
   created() {
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=df1607d64d3add4c3ecca5022fee5cce&query=${ this.search }`)
+    axios.get(`${this.baseURL}/search/movie`, {
+      params: {
+        api_key: 'df1607d64d3add4c3ecca5022fee5cce',
+        query: this.search,
+        language: 'it-IT'
+      }
+    })
     .then( res => {
       this.movies = res.data.results
+    })
+    .catch( error => {
+      console.log(error.response)
+    })
+
+    axios.get(`${this.baseURL}/search/tv`, {
+      params: {
+        api_key: 'df1607d64d3add4c3ecca5022fee5cce',
+        query: this.search,
+        language: "it-IT"
+      }
+    })
+    .then( res => {
+      this.tvShows = res.data.results
     })
     .catch( error => {
       console.log(error.response)
@@ -43,5 +68,19 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+ul li {
+  list-style: none;
+}
+
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie {
+  width: calc(100% / 5);
+  padding-bottom: 50px;
 }
 </style>
