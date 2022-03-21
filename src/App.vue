@@ -25,8 +25,12 @@
           <div class="info">
             <p><strong>Titolo:</strong> {{el.title}}</p>
             <p><strong>Titolo Originale:</strong> {{el.original_title}}</p>
-            <p><strong>Lingua:</strong> {{el.original_language}}</p>
+            <p v-if="el.original_language == 'it'"><strong>Lingua:</strong> IT</p>
+            <p v-else-if="el.original_language == 'en'"><strong>Lingua:</strong> EN</p>
+            <p v-else-if="el.original_language == 'es'"><strong>Lingua:</strong> ES</p>
+            <p v-else-if="el.original_language == 'fr'"><strong>Lingua:</strong> FR</p>
             <p><strong>Voto:</strong> {{el.vote_average}}</p>
+            <p><strong>Trama:</strong> {{el.overview}}</p>
           </div>
         </div>
       </li>
@@ -43,8 +47,12 @@
           <div class="info">
             <p><strong>Titolo:</strong> {{el.name}}</p>
             <p><strong>Titolo Originale:</strong> {{el.original_name}}</p>
-            <p><strong>Lingua:</strong> {{el.original_language}}</p>
+            <p v-if="el.original_language == 'it'"><strong>Lingua:</strong> IT</p>
+            <p v-else-if="el.original_language == 'en'"><strong>Lingua:</strong> EN</p>
+            <p v-else-if="el.original_language == 'es'"><strong>Lingua:</strong> ES</p>
+            <p v-else-if="el.original_language == 'fr'"><strong>Lingua:</strong> FR</p>
             <p><strong>Voto:</strong> {{el.vote_average}}</p>
+            <p><strong>Trama:</strong> {{el.overview}}</p>
           </div>
         </div>
       </li>
