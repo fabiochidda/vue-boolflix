@@ -5,19 +5,31 @@
       <input type="text" v-model="search" @keyup.enter="searchFunction">
     </div>
 
-    <ul class="movie-container">
-      <li class="movie" v-for="el in movies" :key="el.id">
-        {{el.title}}
-        {{el.original_title}}
-        {{el.original_language}}
-        {{el.vote_average}}
+    <ul class="container">
+      <li class="movie">
+        <div class="category-title">
+          <h3>Film</h3>
+        </div>
+        <div class="movie-card" v-for="el in movies" :key="el.id">
+          <img :src="`https://image.tmdb.org/t/p/w342${el.poster_path}`" alt="">
+          <p>Titolo: {{el.title}}</p>
+          <p>Titolo Originale: {{el.original_title}}</p>
+          <p>Lingua: {{el.original_language}}</p>
+          <p>Voto: {{el.vote_average}}</p>
+        </div>
       </li>
 
-      <li class="tv-shows" v-for="el in tvShows" :key="el.id">
-        {{el.name}}
-        {{el.original_name}}
-        {{el.original_language}}
-        {{el.vote_average}}
+      <li class="tv-shows">
+        <div class="category-title">
+          <h3>Serie TV</h3>
+        </div>
+        <div class="tv-shows-card" v-for="el in tvShows" :key="el.id">
+          <img :src="`https://image.tmdb.org/t/p/w342${el.poster_path}`" alt="">
+          <p>Titolo: {{el.name}}</p>
+          <p>Titolo Originale: {{el.original_name}}</p>
+          <p>Lingua: {{el.original_language}}</p>
+          <p>Voto: {{el.vote_average}}</p>
+        </div>
       </li>
     </ul>
 
@@ -84,13 +96,23 @@ ul li {
   list-style: none;
 }
 
-.movie-container {
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.movie-card, .tv-shows-card {
+  width: calc(100% / 5);
+  padding-bottom: 50px;
+}
+
+.movie, .tv-shows {
   display: flex;
   flex-wrap: wrap;
 }
 
-.movie {
-  width: calc(100% / 5);
-  padding-bottom: 50px;
+.category-title {
+  width: 100%;
 }
 </style>
