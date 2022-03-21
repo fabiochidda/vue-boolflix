@@ -1,9 +1,16 @@
 <template>
   <div id="app">
 
-    <div class="search-bar">
-      <input type="text" v-model="search" @keyup.enter="searchFunction">
-    </div>
+    <header>
+      <div class="container msHeader">
+        <div class="header-image">
+          <img src="./assets/Logonetflix.png" alt="">
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Cerca un Film o una Serie TV" v-model="search" @keyup.enter="searchFunction">
+        </div>
+      </div>
+    </header>
 
     <ul class="container">
       <li class="movie">
@@ -53,7 +60,7 @@ export default {
   name: 'App',
   data() {
     return {
-      search: 'men in black',
+      search: '',
       baseURL: 'https://api.themoviedb.org/3',
       movies: [],
       tvShows: []
@@ -95,11 +102,21 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: white;
+}
+
+body {
+  background-color: #1B1B1B;
+}
+
+ul {
+  padding: 0;
 }
 
 ul li {
@@ -110,6 +127,7 @@ ul li {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  padding: 0 50px;
 }
 
 .movie-card, .tv-shows-card {
@@ -132,5 +150,21 @@ ul li {
   align-items: center;
   width: 342px;
   height: 513px;
+}
+
+.msHeader{
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-image img {
+  width: 200px;
+}
+
+.search-bar input {
+  width: 300px;
+  height: 30px;
+  border-radius: 9999px;
 }
 </style>
