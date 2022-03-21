@@ -23,10 +23,10 @@
             <img v-else src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="">
           </div>
           <div class="info">
-            <p>Titolo: {{el.title}}</p>
-            <p>Titolo Originale: {{el.original_title}}</p>
-            <p>Lingua: {{el.original_language}}</p>
-            <p>Voto: {{el.vote_average}}</p>
+            <p><strong>Titolo:</strong> {{el.title}}</p>
+            <p><strong>Titolo Originale:</strong> {{el.original_title}}</p>
+            <p><strong>Lingua:</strong> {{el.original_language}}</p>
+            <p><strong>Voto:</strong> {{el.vote_average}}</p>
           </div>
         </div>
       </li>
@@ -41,10 +41,10 @@
             <img v-else src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="">
           </div>
           <div class="info">
-            <p>Titolo: {{el.name}}</p>
-            <p>Titolo Originale: {{el.original_name}}</p>
-            <p>Lingua: {{el.original_language}}</p>
-            <p>Voto: {{el.vote_average}}</p>
+            <p><strong>Titolo:</strong> {{el.name}}</p>
+            <p><strong>Titolo Originale:</strong> {{el.original_name}}</p>
+            <p><strong>Lingua:</strong> {{el.original_language}}</p>
+            <p><strong>Voto:</strong> {{el.vote_average}}</p>
           </div>
         </div>
       </li>
@@ -132,7 +132,22 @@ ul li {
 
 .movie-card, .tv-shows-card {
   width: calc(100% / 5);
-  padding-bottom: 50px;
+  margin-bottom: 50px;
+  position: relative;
+  
+  &:hover .info {
+    display: block;
+  }
+}
+
+.info {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(14, 14, 14);
 }
 
 .movie, .tv-shows {
