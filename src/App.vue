@@ -8,27 +8,37 @@
     <ul class="container">
       <li class="movie">
         <div class="category-title">
-          <h3>Film</h3>
+          <h2>Film</h2>
         </div>
         <div class="movie-card" v-for="el in movies" :key="el.id">
-          <img :src="`https://image.tmdb.org/t/p/w342${el.poster_path}`" alt="">
-          <p>Titolo: {{el.title}}</p>
-          <p>Titolo Originale: {{el.original_title}}</p>
-          <p>Lingua: {{el.original_language}}</p>
-          <p>Voto: {{el.vote_average}}</p>
+          <div class="image">
+            <img v-if="el.poster_path" :src="`https://image.tmdb.org/t/p/w342${el.poster_path}`" alt="">
+            <img v-else src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="">
+          </div>
+          <div class="info">
+            <p>Titolo: {{el.title}}</p>
+            <p>Titolo Originale: {{el.original_title}}</p>
+            <p>Lingua: {{el.original_language}}</p>
+            <p>Voto: {{el.vote_average}}</p>
+          </div>
         </div>
       </li>
 
       <li class="tv-shows">
         <div class="category-title">
-          <h3>Serie TV</h3>
+          <h2>Serie TV</h2>
         </div>
         <div class="tv-shows-card" v-for="el in tvShows" :key="el.id">
-          <img :src="`https://image.tmdb.org/t/p/w342${el.poster_path}`" alt="">
-          <p>Titolo: {{el.name}}</p>
-          <p>Titolo Originale: {{el.original_name}}</p>
-          <p>Lingua: {{el.original_language}}</p>
-          <p>Voto: {{el.vote_average}}</p>
+          <div class="image">
+            <img v-if="el.poster_path" :src="`https://image.tmdb.org/t/p/w342${el.poster_path}`" alt="">
+            <img v-else src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="">
+          </div>
+          <div class="info">
+            <p>Titolo: {{el.name}}</p>
+            <p>Titolo Originale: {{el.original_name}}</p>
+            <p>Lingua: {{el.original_language}}</p>
+            <p>Voto: {{el.vote_average}}</p>
+          </div>
         </div>
       </li>
     </ul>
@@ -114,5 +124,13 @@ ul li {
 
 .category-title {
   width: 100%;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 342px;
+  height: 513px;
 }
 </style>
